@@ -4,7 +4,7 @@ describe(Client) do
 	
   describe('#name') do
     it('returns the name of the client') do
-      client = Client.new({:name => 'Juanita', :id => nil, :phone_number => '5147701159'})
+      client = Client.new({:name => 'Juanita', :stylist_id => nil, :phone_number => '5147701159'})
       expect(client.name()).to(eq('Juanita'))	
     end
   end	
@@ -16,5 +16,22 @@ describe(Client) do
   end 
 
 
+  describe('#save') do
+    it ('saves a client to an array ') do
+      test_client = Client.new({:name => 'Juanita', :phone_number => '5147701159', :stylist_id => 1})
+      test_client.save()
+      expect(Client.all()).to(eq([test_client]))
+    end	
+  end 	
+
+  describe('#==') do
+    it ('recognizes two objects with the same properties as equal') do
+      test_client = Client.new({:name => 'Juanita', :stylist_id => nil, :phone_number => '5147701159'})
+      test_client2 = Client.new({:name => 'Juanita', :stylist_id => nil, :phone_number => '5147701159'})
+      expect(test_client).to(eq(test_client2))
+    end	
+  end	
+
+ 
 
 end
