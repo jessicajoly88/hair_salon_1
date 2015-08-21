@@ -21,6 +21,22 @@ describe(Stylist) do
       another_stylist = Stylist.new({:name => 'Juanita', :id => nil})
       expect(stylist).to(eq(another_stylist))  	
     end	
-  end	
-	
+  end
+
+  describe('#save') do
+    it('saves a stylist to an array') do
+      stylist = Stylist.new({:name => 'Juanita', :id => nil})
+      stylist.save()
+      expect(Stylist.all()).to(eq([stylist]))  	
+    end
+  end
+
+  describe('.find') do
+    it('finds a stylist based on ID number') do
+      stylist = Stylist.new({:name => 'Paris', :id => nil})
+      stylist.save()
+      expect(Stylist.find(stylist.id)).to(eq(stylist))
+    end
+  end
+
 end
