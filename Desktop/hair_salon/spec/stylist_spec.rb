@@ -48,4 +48,16 @@ describe(Stylist) do
     end
   end
 
+  describe('#delete') do
+  	it('lets you delete stylists in the database') do
+  	  stylist = Stylist.new({:name => 'Anna', :id => nil})
+      stylist.save()
+      stylist2 = Stylist.new({:name => 'Anna', :id => nil})
+      stylist2.save()
+      stylist.delete()
+      expect(Stylist.all()).to(eq([stylist2]))	
+    end
+  end
+
+
 end
