@@ -15,5 +15,12 @@ describe(Stylist) do
     end
   end 
 
+  describe('#==') do
+    it('recognizes two objects with the same properties as equal') do
+      stylist = Stylist.new({:name => 'Juanita', :id => nil})
+      another_stylist = Stylist.new({:name => 'Juanita', :id => nil})
+      expect(stylist).to(eq(another_stylist))  	
+    end	
+  end	
 	
 end
