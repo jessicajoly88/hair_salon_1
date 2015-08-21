@@ -4,7 +4,7 @@ describe(Client) do
 	
   describe('#name') do
     it('returns the name of the client') do
-      client = Client.new({:name => 'Juanita', :stylist_id => 1, :phone_number => '5147701159'})
+      client = Client.new({:name => 'Juanita', :id => nil, :stylist_id => 1, :phone_number => '5147701159'})
       expect(client.name()).to(eq('Juanita'))	
     end
   end	
@@ -17,7 +17,7 @@ describe(Client) do
 
   describe('#save') do
     it('saves a client to an array ') do
-      test_client = Client.new({:name => 'Juanita', :phone_number => '5147701159', :stylist_id => 1})
+      test_client = Client.new({:name => 'Juanita', :id => nil, :phone_number => '5147701159', :stylist_id => 1})
       test_client.save()
       expect(Client.all()).to(eq([test_client]))
     end	
@@ -25,19 +25,30 @@ describe(Client) do
 
   describe('#==') do
     it('recognizes two objects with the same properties as equal') do
-      test_client = Client.new({:name => 'Juanita', :stylist_id => 1, :phone_number => '5147701159'})
-      test_client2 = Client.new({:name => 'Juanita', :stylist_id => 1, :phone_number => '5147701159'})
+      test_client = Client.new({:name => 'Juanita',:id => nil, :stylist_id => 1, :phone_number => '5147701159'})
+      test_client2 = Client.new({:name => 'Juanita',:id => nil, :stylist_id => 1, :phone_number => '5147701159'})
       expect(test_client).to(eq(test_client2))
     end	
   end	
  
   describe('#update') do
     it('lets you update clients in the database') do
-      test_client = Client.new({:name => 'Juanita', :stylist_id => 1, :phone_number => '5147701159'}) 
+      test_client = Client.new({:name => 'Juanita',:id => nil, :stylist_id => 1, :phone_number => '5147701159'}) 
       test_client.save()
-      test_client.update({:name => 'Marguerite', :stylist_id => 1, :phone_number => '5147175911'})
+      test_client.update({:name => 'Marguerite',:id => nil, :stylist_id => 1, :phone_number => '5147175911'})
       expect(test_client.name).to(eq('Marguerite'))
     end	
+  end	
+
+  describe('#delete') do
+  	it ('lets you delete clients in the database') do
+  	  test_client = Client.new({:name => 'Juanita',:id => nil, :stylist_id => 1, :phone_number => '5147701159'}) 	
+  	  test_client.save()
+  	  test_client2 = Client.new({:name => 'Joan',:id => nil, :stylist_id => 1, :phone_number => '5147701159'})
+      test_client2.save()
+      test_client.delete()
+      expect(Client.all()).to(eq([test_client2])) 
+  	end	
   end	
  
 
