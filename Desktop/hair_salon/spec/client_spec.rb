@@ -9,6 +9,11 @@ describe(Client) do
     end
   end	
 
+  describe('.all') do
+    it('is an empty array at first') do
+      expect(Client.all()).to(eq([]))	
+    end	
+  end 
 
 
 
