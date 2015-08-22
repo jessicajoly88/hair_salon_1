@@ -69,6 +69,5 @@ describe(Stylist) do
   	end	
   end	
 
-  des
 
 end
